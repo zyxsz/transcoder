@@ -114,7 +114,9 @@ const getStreamBitRate = (stream: FfprobeStream) => {
         : 128000
       : stream?.bit_rate
       ? parseInt(
-          stream.bit_rate === "N/A" ? stream.tags["BPS"] : stream.bit_rate
+          stream.bit_rate === "N/A"
+            ? stream?.tags?.["BPS"] || 4000000
+            : stream.bit_rate
         )
       : 4000000) as string
   );
